@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "electron": "^8.2.0",
+    "file-loader": "^6.0.0",
     "handtrackjs": "^0.0.13",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

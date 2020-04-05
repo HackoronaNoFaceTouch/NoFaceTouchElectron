@@ -1,15 +1,28 @@
 import React, {useEffect, useRef, useState} from 'react'
+import audioSrc from '../audio/warning.wav'
 
 import * as handTrack from 'handtrackjs'
+
+const blockStyle = {
+    fontFamily: 'Tahoma',
+    position: 'absolute',
+    color: 'red',
+    fontWeight: '500',
+    backgroundColor: 'white',
+    padding: '20px',
+    borderBottomRightRadius: '4px'
+}
 
 const App = ()=>{
     const videoRef = useRef()
     const canvasRef = useRef()
+    const audioRef = useRef()
     const [counter, setCounter] = useState(0)
 
     useEffect(()=>{
         const videoEl = videoRef.current
         const canvasEl = canvasRef.current
+        const audioEl = audioRef.current
         const context = canvasEl && canvasEl.getContext('2d')
 
         const modelParams = {
@@ -32,9 +45,8 @@ const App = ()=>{
                 console.log(predictions);
                 model.renderPredictions(predictions, canvasEl, context, videoEl);
                 if(predictions.length > 0){
-                    console.log(counter)
                     setCounter(counter => counter + 1)
-                    // audio.play();
+                    audioEl.play();
                 }
         
             })
@@ -54,9 +66,10 @@ const App = ()=>{
         return () => clearInterval(interval)
     }, [videoRef, canvasRef])
     return <div>
-        <div style={{position: 'absolute', color: 'red', fontWeight: '500'}}>{counter}</div>
+        <div style={blockStyle}>{counter}</div>
         <video ref={videoRef} style={{display: 'none'}}></video>
         <canvas ref={canvasRef}></canvas>
+        <audio src={audioSrc} ref={audioRef}></audio>
     </div>
 }
 

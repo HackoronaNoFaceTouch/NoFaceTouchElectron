@@ -25,7 +25,14 @@ module.exports = {
             test: /\.css/,
             loaders: [ 'style-loader', 'css-loader' ]
         },
-        
+        {
+            test: /\.(wav)$/i,
+            use: [
+              {
+                loader: 'file-loader',
+              },
+            ],
+          }
     ]
     },
     mode: 'production',
