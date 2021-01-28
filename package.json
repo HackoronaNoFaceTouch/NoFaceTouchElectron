@@ -11,7 +11,7 @@
     "start-electron": "electron ."
   },
   "dependencies": {
-    "electron": "^8.2.0",
+    "electron": "^9.4.0",
     "file-loader": "^6.0.0",
     "handtrackjs": "^0.0.13",
     "prop-types": "^15.7.2",
